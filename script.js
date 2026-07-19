@@ -1,0 +1,129 @@
+(function () {
+  'use strict';
+
+  const panels = Array.from(document.querySelectorAll('.panel'));
+  const dots = Array.from(document.querySelectorAll('.dot'));
+  const cornerLabel = document.getElementById('corner-label');
+  const srLive = document.getElementById('sr-live');
+  const total = panels.length;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let currentIndex = 0;
+
+  function setCurrentIndex(index) {
+    currentIndex = Math.max(0, Math.min(total - 1, index));
+    dots.forEach((dot, i) => {
+      if (i === currentIndex) {
+        dot.setAttribute('aria-current', 'true');
+      } else {
+        dot.removeAttribute('aria-current');
+      }
+    });
+    if (cornerLabel) {
+      cornerLabel.textContent =
+        String(currentIndex + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+    }
+    if (srLive) {
+      const label = panels[currentIndex].dataset.label || '';
+      srLive.textContent = 'Panel ' + (currentIndex + 1) + ' of ' + total + ': ' + label;
+    }
+  }
+
+  // Native vertical page scroll + CSS scroll-snap does the actual moving;
+  // this just drives it for keyboard/dot-nav input rather than intercepting
+  // wheel/touch, which stay untouched.
+  function goToPanel(index) {
+    index = Math.max(0, Math.min(total - 1, index));
+    panels[index].scrollIntoView({
+      behavior: reducedMotion ? 'auto' : 'smooth',
+      block: 'start',
+    });
+    setCurrentIndex(index);
+  }
+
+  // Keyboard navigation — primary non-gesture path alongside the dot nav.
+  window.addEventListener('keydown', (e) => {
+    switch (e.key) {
+      case 'ArrowDown':
+      case 'PageDown':
+        e.preventDefault();
+        goToPanel(currentIndex + 1);
+        break;
+      case 'ArrowUp':
+      case 'PageUp':
+        e.preventDefault();
+        goToPanel(currentIndex - 1);
+        break;
+      case 'Home':
+        e.preventDefault();
+        goToPanel(0);
+        break;
+      case 'End':
+        e.preventDefault();
+        goToPanel(total - 1);
+        break;
+      default:
+        break;
+    }
+  });
+
+  // Dot nav.
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => goToPanel(i));
+  });
+
+  // Keep currentIndex accurate for ALL input methods (scroll, dot clicks,
+  // keyboard). Sections are compact now (not forced to fill the viewport),
+  // so an intersection-ratio threshold isn't reliable — instead pick the
+  // last section whose top has crossed a line near the top of the viewport.
+  function updateCurrentFromScroll() {
+    const doc = document.documentElement;
+    const maxScrollY = Math.max(doc.scrollHeight - window.innerHeight, 0);
+    const line = window.scrollY + window.innerHeight * 0.3;
+    let index = 0;
+    panels.forEach((panel, i) => {
+      // Clamp to maxScrollY: a short final section's top may sit past the
+      // furthest the page can actually scroll, so without this the last
+      // panel could never be "reached" even at the very bottom of the page.
+      const effectiveTop = Math.min(panel.offsetTop, maxScrollY);
+      if (effectiveTop <= line) index = i;
+    });
+    setCurrentIndex(index);
+  }
+
+  // Scroll-driven gradient drift: map vertical scroll progress (0-1) to a
+  // CSS custom property the gradient mesh uses to shift hue/position.
+  let rafPending = false;
+  function updateProgressVar() {
+    const doc = document.documentElement;
+    const maxScroll = doc.scrollHeight - doc.clientHeight;
+    const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+    doc.style.setProperty('--scroll-progress', progress.toFixed(4));
+    rafPending = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!rafPending) {
+      rafPending = true;
+      requestAnimationFrame(() => {
+        updateProgressVar();
+        updateCurrentFromScroll();
+      });
+    }
+  });
+
+  // Film-grain flicker: re-seed both turbulence filters on a short interval
+  // so the noise texture crawls like real film grain instead of sitting
+  // static. Skipped entirely under reduced motion.
+  if (!reducedMotion) {
+    const fineTurbulence = document.querySelector('#grain-fine feTurbulence');
+    const coarseTurbulence = document.querySelector('#grain-coarse feTurbulence');
+    setInterval(() => {
+      if (fineTurbulence) fineTurbulence.setAttribute('seed', String(Math.floor(Math.random() * 100)));
+      if (coarseTurbulence) coarseTurbulence.setAttribute('seed', String(Math.floor(Math.random() * 100)));
+    }, 110);
+  }
+
+  updateProgressVar();
+  updateCurrentFromScroll();
+})();

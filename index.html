@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Vikram Aditya — AI/ML Engineer</title>
+<meta name="description" content="Vikram Aditya — AI/ML Engineer building RAG pipelines, fine-tuned LLMs, and full-stack products.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<svg class="grain-def" width="0" height="0" aria-hidden="true">
+  <filter id="grain-fine" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7" stitchTiles="stitch" result="noise"/>
+    <feColorMatrix in="noise" type="matrix"
+      values="0.33 0.33 0.33 0 0
+              0.33 0.33 0.33 0 0
+              0.33 0.33 0.33 0 0
+              0    0    0    0 1"/>
+  </filter>
+  <filter id="grain-coarse" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="3" stitchTiles="stitch" result="noise"/>
+    <feColorMatrix in="noise" type="matrix"
+      values="0.33 0.33 0.33 0 0
+              0.33 0.33 0.33 0 0
+              0.33 0.33 0.33 0 0
+              0    0    0    0 1"/>
+  </filter>
+</svg>
+
+<div class="gradient-mesh" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain-overlay grain-overlay--fine" aria-hidden="true"></div>
+<div class="grain-overlay grain-overlay--coarse" aria-hidden="true"></div>
+
+<div id="sr-live" class="sr-only" aria-live="polite"></div>
+
+<a class="skip-link" href="#dot-nav">Skip to panel navigation</a>
+
+<div id="panels" class="panels">
+
+  <section class="panel" id="panel-0" data-index="0" data-label="Intro" aria-label="Intro">
+    <div class="panel-inner hero-inner">
+      <p class="eyebrow"><span class="sdot" aria-hidden="true"></span> AI ENGINEER · BANGALORE, INDIA</p>
+      <h1 class="hero-name">Vikram Aditya</h1>
+      <p class="hero-tagline">Building products that work in production.</p>
+      <p class="hero-sub">RAG pipelines <span class="dash">·</span> Fine-tuning LLMs <span class="dash">·</span> Full Stack</p>
+      <div class="link-row">
+        <a href="https://github.com/vxkram" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/rvikramaditya/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:vikramaditya2805@gmail.com">Email</a>
+        <a href="./Vikram%20Aditya%20Resume.pdf" download>Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-1" data-index="1" data-label="Experience" aria-label="Experience">
+    <div class="panel-inner">
+      <p class="panel-kicker">01 / Experience</p>
+      <div class="role-header">
+        <h2>Thoughtfocus</h2>
+        <p class="role-meta">AI Engineer <span class="dash">·</span> Jan 2025 — Present</p>
+      </div>
+      <div class="story-grid">
+        <div class="story">
+          <h3>HR Q&amp;A System</h3>
+          <ul>
+            <li>Semantic chunking + all-MiniLM-L6-v2 embeddings + FAISS retrieval over 200+ policy documents</li>
+            <li>Fine-tuned Qwen 3 via Unsloth/QLoRA, served through Ollama</li>
+            <li>Role-based access control and workflow-aware retrieval</li>
+          </ul>
+        </div>
+        <div class="story">
+          <h3>PitStop Manager</h3>
+          <ul>
+            <li>React + Spring Boot REST APIs on Azure Container Apps, PostgreSQL, and Blob Storage</li>
+            <li>Azure AD SSO authentication</li>
+            <li>Semantic skill-similarity matching between resumes and job descriptions</li>
+          </ul>
+        </div>
+      </div>
+      <p class="footnote">Also automated AEM form regression testing with Selenium + Faker (−60% manual effort), and mentored an intern on RAG pipeline development.</p>
+      <div class="earlier-row">
+        <div class="earlier-item">
+          <h4>Tech Mahindra <span class="role-meta-inline">· Nov 2024 – Jan 2025</span></h4>
+          <p>RAG workflow benchmarking on Project Indus (Hugging Face, PEFT, TRL, GCP); Django/MySQL internship platform.</p>
+        </div>
+        <div class="earlier-item">
+          <h4>Mavencart <span class="role-meta-inline">· Jun 2023 – Aug 2023</span></h4>
+          <p>Backend for AI products — a generative AI writer and a social media template generator.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-2" data-index="2" data-label="Projects" aria-label="Projects">
+    <div class="panel-inner">
+      <p class="panel-kicker">02 / Projects</p>
+      <div class="project-grid">
+        <div class="project">
+          <h3>Image Colorization</h3>
+          <p>OpenCV DNN inference with a pretrained Caffe model predicts ab channels in LAB color space to reconstruct colorized images from grayscale input, wrapped in a Flask web UI.</p>
+          <div class="tag-row">
+            <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">Flask</span>
+          </div>
+          <a href="https://github.com/vxkram/image-colorization" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+        <div class="project">
+          <h3>HR Q&amp;A System</h3>
+          <p>A document-aware AI assistant for querying enterprise PDFs and structured data — semantic retrieval over policy documents with a locally fine-tuned Qwen 3 model for domain-specific response generation.</p>
+          <div class="tag-row">
+            <span class="tag">RAG</span><span class="tag">FAISS</span><span class="tag">Qwen 3</span><span class="tag">Unsloth</span>
+          </div>
+          <span class="project-note">Internal project — case study</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-3" data-index="3" data-label="Skills" aria-label="Skills">
+    <div class="panel-inner">
+      <p class="panel-kicker">03 / Skills</p>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <div class="tag-row">
+            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/python/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Python</span><span class="tag">Java</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/javascript/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">JavaScript</span><span class="tag">SQL</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/cplusplus/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">C++</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>ML &amp; AI</h3>
+          <div class="tag-row">
+            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/tensorflow/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">TensorFlow</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/keras/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Keras</span><span class="tag">PEFT</span><span class="tag">TRL</span><span class="tag">Unsloth</span><span class="tag">QLoRA</span><span class="tag">FAISS</span><span class="tag">Sentence Transformers</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/ollama/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Ollama</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Backend &amp; Web</h3>
+          <div class="tag-row">
+            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/springboot/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Spring Boot</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/fastapi/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">FastAPI</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/django/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Django</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/react/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">React</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/nodedotjs/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Node.js</span><span class="tag">REST APIs</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/streamlit/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Streamlit</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Cloud &amp; Data</h3>
+          <div class="tag-row">
+            <span class="tag">Azure Container Apps</span><span class="tag">Azure Blob Storage</span><span class="tag">Azure AD</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/postgresql/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Azure PostgreSQL</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/mysql/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">MySQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Tooling</h3>
+          <div class="tag-row">
+            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/numpy/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">NumPy</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/pandas/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">pandas</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/scikitlearn/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">scikit-learn</span><span class="tag">Matplotlib</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/opencv/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">OpenCV</span><span class="tag">NLTK</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/selenium/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Selenium</span><span class="tag">Playwright</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/faker/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Faker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-4" data-index="4" data-label="Contact" aria-label="Contact">
+    <div class="panel-inner contact-inner">
+      <p class="panel-kicker">04 / Contact</p>
+      <h2 class="contact-heading">Let's talk.</h2>
+      <p class="contact-sub">Open to conversations about AI engineering, RAG systems, and interesting problems.</p>
+      <div class="link-row link-row-large">
+        <a href="mailto:vikramaditya2805@gmail.com">vikramaditya2805@gmail.com</a>
+        <a href="https://github.com/vxkram" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/rvikramaditya/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="./Vikram%20Aditya%20Resume.pdf" download>Download Résumé</a>
+      </div>
+      <p class="footer-note">© 2026 Vikram Aditya</p>
+    </div>
+  </section>
+
+</div>
+
+<nav class="dot-nav" id="dot-nav" aria-label="Panel navigation">
+  <button class="dot" data-goto="0" aria-label="Go to panel 1: Intro"></button>
+  <button class="dot" data-goto="1" aria-label="Go to panel 2: Experience"></button>
+  <button class="dot" data-goto="2" aria-label="Go to panel 3: Projects"></button>
+  <button class="dot" data-goto="3" aria-label="Go to panel 4: Skills"></button>
+  <button class="dot" data-goto="4" aria-label="Go to panel 5: Contact"></button>
+</nav>
+
+<div class="corner-label" id="corner-label" aria-hidden="true">01 / 05</div>
+
+<script src="./script.js"></script>
+</body>
+</html>
