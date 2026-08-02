@@ -9,10 +9,6 @@
   --display:'Space Grotesk',sans-serif;
   --body:'Inter',sans-serif;
   --mono:'JetBrains Mono','Fira Code',monospace;
-
-  --scroll-progress:0;
-  --hue-shift:calc(var(--scroll-progress) * 15);
-  --panel-transition:0.45s cubic-bezier(.22,.61,.36,1);
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -56,47 +52,10 @@ ul{list-style:none}
 /* ── BACKGROUND LAYERS (fixed, behind content) ── */
 .gradient-mesh{
   position:fixed;inset:0;z-index:0;
-  background:
-    radial-gradient(at calc(20% + var(--scroll-progress) * 40%) 25%,
-      hsl(calc(28 + var(--hue-shift)) 85% 24% / 0.5), transparent 58%),
-    radial-gradient(at calc(80% - var(--scroll-progress) * 30%) 78%,
-      hsl(calc(178 + var(--hue-shift)) 70% 20% / 0.45), transparent 58%),
-    radial-gradient(at 50% 50%,
-      hsl(calc(15 + var(--hue-shift)) 80% 16% / 0.16), transparent 62%),
-    var(--ink);
-  transition:background var(--panel-transition);
-}
-
-.vignette{
-  position:fixed;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse at 50% 50%, transparent 38%, rgba(0,0,0,0.72) 100%);
-}
-
-/* Base tiles here are a static fallback for the instant before script.js
-   runs; script.js repaints both layers on a <canvas> sized to the actual
-   devicePixelRatio and swaps background-image/background-size to that, so
-   the grain stays crisp even at fractional (non-2x) DPR -- see the
-   paintGrainTile comment there for why a fixed-resolution PNG can't do
-   that on its own. */
-.grain-overlay{
-  position:fixed;inset:0;
-  pointer-events:none;
-  background-repeat:repeat;
-  image-rendering:pixelated;
-}
-.grain-overlay--fine{
-  z-index:2;
-  background-image:url(./grain-fine.png);
-  background-size:64px 64px;
-  opacity:.62;
-  mix-blend-mode:overlay;
-}
-.grain-overlay--coarse{
-  z-index:3;
-  background-image:url(./grain-coarse.png);
-  background-size:96px 96px;
-  opacity:.4;
-  mix-blend-mode:soft-light;
+  /* Dark tints of --orange/--teal, not the full-brightness accent colors --
+     those are tuned for small text/icons on a dark backdrop, and light
+     enough as a full-page wash to wash out --text-dim and the nav dots. */
+  background:linear-gradient(135deg, hsl(25 85% 16%), hsl(176 70% 14%));
 }
 
 /* ── PANEL FLOW (compact, no forced full-viewport height) ── */
