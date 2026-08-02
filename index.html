@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Vikram Aditya — AI/ML Engineer</title>
 <meta name="description" content="Vikram Aditya — AI/ML Engineer building RAG pipelines, fine-tuned LLMs, and full-stack products.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23040403'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Space Grotesk,sans-serif' font-weight='700' fill='%23FF7A29' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -97,17 +98,9 @@
   </section>
 
   <section class="panel" id="panel-2" data-index="2" data-label="Projects" aria-label="Projects">
-    <div class="panel-inner">
+    <div class="panel-inner panel-inner--wide">
       <p class="panel-kicker">02 / Projects</p>
       <div class="project-grid">
-        <div class="project">
-          <h3>Image Colorization</h3>
-          <p>OpenCV DNN inference with a pretrained Caffe model predicts ab channels in LAB color space to reconstruct colorized images from grayscale input, wrapped in a Flask web UI.</p>
-          <div class="tag-row">
-            <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">Flask</span>
-          </div>
-          <a href="https://github.com/vxkram/image-colorization" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
-        </div>
         <div class="project">
           <h3>HR Q&amp;A System</h3>
           <p>A document-aware AI assistant for querying enterprise PDFs and structured data — semantic retrieval over policy documents with a locally fine-tuned Qwen 3 model for domain-specific response generation.</p>
@@ -115,6 +108,46 @@
             <span class="tag">RAG</span><span class="tag">FAISS</span><span class="tag">Qwen 3</span><span class="tag">Unsloth</span>
           </div>
           <span class="project-note">Internal project — case study</span>
+        </div>
+        <div class="project">
+          <h3>Intelligent Tutoring System</h3>
+          <p>DBMS study app where quiz results drive tiered resource recommendations in real time, plus PDF summarization and a text/video learning hub.</p>
+          <div class="tag-row">
+            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/fastapi/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">FastAPI</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/react/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">React</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/mongodb/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">MongoDB</span>
+          </div>
+          <a href="https://github.com/vxkram/intelligent-tutoring-system" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+        <div class="project">
+          <h3>Resume Summarizer</h3>
+          <p>Upload a resume PDF and get a GPT-generated summary plus tailored interview questions, with a review flow to answer and save them.</p>
+          <div class="tag-row">
+            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/django/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Django</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/react/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">React</span><span class="tag">OpenAI</span>
+          </div>
+          <a href="https://github.com/vxkram/resume-summarizer" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+        <div class="project">
+          <h3>AI Ad Template Generator</h3>
+          <p>Two-step ad banner pipeline — Stable Diffusion img2img restyles a product photo, then a compositing pass lays out a logo, brand-colored CTA button, and punchline text.</p>
+          <div class="tag-row">
+            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/fastapi/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">FastAPI</span><span class="tag">Diffusers</span><span class="tag">Stable Diffusion</span>
+          </div>
+          <a href="https://github.com/vxkram/ad_template" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+        <div class="project">
+          <h3>Face Mask Detector</h3>
+          <p>MobileNetV2 transfer-learning classifier (97.6% validation accuracy) behind a Flask API with a live browser upload UI — mask, no mask, or worn incorrectly, with per-class confidence.</p>
+          <div class="tag-row">
+            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/tensorflow/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">TensorFlow</span><span class="tag">MobileNetV2</span><span class="tag">Flask</span>
+          </div>
+          <a href="https://github.com/vxkram/face-mask-detection" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+        <div class="project">
+          <h3>Image Colorization</h3>
+          <p>OpenCV DNN inference with a pretrained Caffe model predicts ab channels in LAB color space to reconstruct colorized images from grayscale input, wrapped in a Flask web UI.</p>
+          <div class="tag-row">
+            <span class="tag">Python</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/opencv/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">OpenCV</span><span class="tag">Flask</span>
+          </div>
+          <a href="https://github.com/vxkram/image-colorization" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
         </div>
       </div>
     </div>
@@ -133,7 +166,7 @@
         <div class="skill-group">
           <h3>ML &amp; AI</h3>
           <div class="tag-row">
-            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/tensorflow/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">TensorFlow</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/keras/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Keras</span><span class="tag">PEFT</span><span class="tag">TRL</span><span class="tag">Unsloth</span><span class="tag">QLoRA</span><span class="tag">FAISS</span><span class="tag">Sentence Transformers</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/ollama/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Ollama</span>
+            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/tensorflow/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">TensorFlow</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/keras/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Keras</span><span class="tag">PEFT</span><span class="tag">TRL</span><span class="tag">Unsloth</span><span class="tag">QLoRA</span><span class="tag">FAISS</span><span class="tag">Sentence Transformers</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/ollama/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Ollama</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/huggingface/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Hugging Face</span><span class="tag">Diffusers</span>
           </div>
         </div>
         <div class="skill-group">
@@ -145,7 +178,7 @@
         <div class="skill-group">
           <h3>Cloud &amp; Data</h3>
           <div class="tag-row">
-            <span class="tag">Azure Container Apps</span><span class="tag">Azure Blob Storage</span><span class="tag">Azure AD</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/postgresql/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Azure PostgreSQL</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/mysql/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">MySQL</span>
+            <span class="tag">Azure Container Apps</span><span class="tag">Azure Blob Storage</span><span class="tag">Azure AD</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/postgresql/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Azure PostgreSQL</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/mysql/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">MySQL</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/mongodb/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">MongoDB</span>
           </div>
         </div>
         <div class="skill-group">
