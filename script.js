@@ -112,15 +112,51 @@
     }
   });
 
+  // Replace the pre-rendered grain PNGs with a canvas painted at the
+  // *current* devicePixelRatio. A fixed-resolution image assumes dpr is a
+  // clean integer (2 on standard Retina); on macOS "scaled resolution"
+  // displays dpr is fractional (e.g. 1.6x/1.75x), so upscaling a fixed tile
+  // lands on non-integer pixel boundaries and smears into soft blotches no
+  // matter what image-rendering hint is set. Sizing the canvas to
+  // Math.round(tileSize * dpr) device pixels and displaying it at exactly
+  // `tileSize` CSS px maps every canvas pixel to one device pixel for any
+  // dpr, by construction -- no scaling ever happens.
+  function paintGrainTile(el, tileSize) {
+    if (!el) return null;
+    const dpr = window.devicePixelRatio || 1;
+    const px = Math.max(1, Math.round(tileSize * dpr));
+    const canvas = document.createElement('canvas');
+    canvas.width = px;
+    canvas.height = px;
+    const ctx = canvas.getContext('2d');
+    const imageData = ctx.createImageData(px, px);
+    const data = imageData.data;
+    for (let i = 0; i < data.length; i += 4) {
+      const v = (Math.random() * 256) | 0;
+      data[i] = v;
+      data[i + 1] = v;
+      data[i + 2] = v;
+      data[i + 3] = 255;
+    }
+    ctx.putImageData(imageData, 0, 0);
+    el.style.backgroundImage = `url(${canvas.toDataURL()})`;
+    const cssSize = px / dpr;
+    el.style.backgroundSize = `${cssSize}px ${cssSize}px`;
+    return cssSize;
+  }
+
+  const fineGrain = document.querySelector('.grain-overlay--fine');
+  const coarseGrain = document.querySelector('.grain-overlay--coarse');
+  const fineTileSize = paintGrainTile(fineGrain, 64) || 64;
+  const coarseTileSize = paintGrainTile(coarseGrain, 96) || 96;
+
   // Film-grain flicker: jitter each noise tile's background-position on a
   // short interval so it crawls like real film grain instead of sitting
   // static. Skipped entirely under reduced motion.
   if (!reducedMotion) {
-    const fineGrain = document.querySelector('.grain-overlay--fine');
-    const coarseGrain = document.querySelector('.grain-overlay--coarse');
     setInterval(() => {
-      if (fineGrain) fineGrain.style.backgroundPosition = `${Math.random() * 64}px ${Math.random() * 64}px`;
-      if (coarseGrain) coarseGrain.style.backgroundPosition = `${Math.random() * 96}px ${Math.random() * 96}px`;
+      if (fineGrain) fineGrain.style.backgroundPosition = `${Math.random() * fineTileSize}px ${Math.random() * fineTileSize}px`;
+      if (coarseGrain) coarseGrain.style.backgroundPosition = `${Math.random() * coarseTileSize}px ${Math.random() * coarseTileSize}px`;
     }, 110);
   }
 

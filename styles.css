@@ -72,12 +72,12 @@ ul{list-style:none}
   background:radial-gradient(ellipse at 50% 50%, transparent 38%, rgba(0,0,0,0.72) 100%);
 }
 
-/* Pre-rendered noise tiles instead of a live SVG feTurbulence filter --
-   Chrome rasterizes that filter type at a much lower effective resolution
-   than Safari on high-DPI screens (blotchy instead of fine grain), and
-   since this layer blends over the whole page, it visibly softened
-   everything underneath. A tiled background image is just sampled, not
-   filtered, so it renders pixel-identical in every browser. */
+/* Base tiles here are a static fallback for the instant before script.js
+   runs; script.js repaints both layers on a <canvas> sized to the actual
+   devicePixelRatio and swaps background-image/background-size to that, so
+   the grain stays crisp even at fractional (non-2x) DPR -- see the
+   paintGrainTile comment there for why a fixed-resolution PNG can't do
+   that on its own. */
 .grain-overlay{
   position:fixed;inset:0;
   pointer-events:none;
