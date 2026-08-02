@@ -54,8 +54,6 @@ ul{list-style:none}
 }
 
 /* ── BACKGROUND LAYERS (fixed, behind content) ── */
-.grain-def{position:absolute;width:0;height:0;overflow:hidden}
-
 .gradient-mesh{
   position:fixed;inset:0;z-index:0;
   background:
@@ -74,19 +72,28 @@ ul{list-style:none}
   background:radial-gradient(ellipse at 50% 50%, transparent 38%, rgba(0,0,0,0.72) 100%);
 }
 
+/* Pre-rendered noise tiles instead of a live SVG feTurbulence filter --
+   Chrome rasterizes that filter type at a much lower effective resolution
+   than Safari on high-DPI screens (blotchy instead of fine grain), and
+   since this layer blends over the whole page, it visibly softened
+   everything underneath. A tiled background image is just sampled, not
+   filtered, so it renders pixel-identical in every browser. */
 .grain-overlay{
   position:fixed;inset:0;
   pointer-events:none;
+  background-repeat:repeat;
 }
 .grain-overlay--fine{
   z-index:2;
-  filter:url(#grain-fine);
+  background-image:url(./grain-fine.png);
+  background-size:64px 64px;
   opacity:.62;
   mix-blend-mode:overlay;
 }
 .grain-overlay--coarse{
   z-index:3;
-  filter:url(#grain-coarse);
+  background-image:url(./grain-coarse.png);
+  background-size:96px 96px;
   opacity:.4;
   mix-blend-mode:soft-light;
 }

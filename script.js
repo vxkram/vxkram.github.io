@@ -112,15 +112,15 @@
     }
   });
 
-  // Film-grain flicker: re-seed both turbulence filters on a short interval
-  // so the noise texture crawls like real film grain instead of sitting
+  // Film-grain flicker: jitter each noise tile's background-position on a
+  // short interval so it crawls like real film grain instead of sitting
   // static. Skipped entirely under reduced motion.
   if (!reducedMotion) {
-    const fineTurbulence = document.querySelector('#grain-fine feTurbulence');
-    const coarseTurbulence = document.querySelector('#grain-coarse feTurbulence');
+    const fineGrain = document.querySelector('.grain-overlay--fine');
+    const coarseGrain = document.querySelector('.grain-overlay--coarse');
     setInterval(() => {
-      if (fineTurbulence) fineTurbulence.setAttribute('seed', String(Math.floor(Math.random() * 100)));
-      if (coarseTurbulence) coarseTurbulence.setAttribute('seed', String(Math.floor(Math.random() * 100)));
+      if (fineGrain) fineGrain.style.backgroundPosition = `${Math.random() * 64}px ${Math.random() * 64}px`;
+      if (coarseGrain) coarseGrain.style.backgroundPosition = `${Math.random() * 96}px ${Math.random() * 96}px`;
     }, 110);
   }
 
