@@ -279,10 +279,7 @@ ul{list-style:none}
 .vinyl-player[aria-pressed="true"] .vinyl-disc{animation-play-state:running}
 .vinyl-label{
   width:40%;height:40%;border-radius:50%;
-  background:var(--orange);color:var(--ink);
-  display:flex;align-items:center;justify-content:center;text-align:center;
-  font-family:var(--mono);font-size:.5rem;font-weight:700;
-  letter-spacing:.02em;line-height:1.15;
+  background:var(--orange) url(./vinyl-cover.jpg) center/cover;
 }
 .vinyl-icon{
   position:absolute;right:-4px;bottom:-4px;
