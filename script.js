@@ -129,4 +129,76 @@
       if (vinylIcon) vinylIcon.textContent = '▶';
     });
   }
+
+  // Floating dots background: slow-drifting white particles over the
+  // gradient. Canvas is sized in device pixels (canvas.width/height) but
+  // drawn against CSS-pixel coordinates via ctx.scale(dpr, dpr), so dots
+  // stay crisp at any devicePixelRatio -- same reasoning as the grain-tile
+  // fix earlier, just applied from the start this time instead of after
+  // shipping a fixed-resolution version.
+  const dotsCanvas = document.getElementById('dots-bg');
+  if (dotsCanvas) {
+    const ctx = dotsCanvas.getContext('2d');
+    let width = 0;
+    let height = 0;
+    let particles = [];
+    const DENSITY = 1 / 18000; // particles per CSS px^2
+
+    function resize() {
+      const dpr = window.devicePixelRatio || 1;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      dotsCanvas.width = Math.round(width * dpr);
+      dotsCanvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.round(width * height * DENSITY);
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: 0.6 + Math.random() * 1.4,
+        speed: 6 + Math.random() * 14, // CSS px per second, drifting upward
+        drift: (Math.random() - 0.5) * 6,
+        opacity: 0.15 + Math.random() * 0.35,
+      }));
+    }
+
+    function draw(deltaSeconds) {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#fff';
+      particles.forEach((p) => {
+        if (deltaSeconds) {
+          p.y -= p.speed * deltaSeconds;
+          p.x += p.drift * deltaSeconds;
+          if (p.y < -4) {
+            p.y = height + 4;
+            p.x = Math.random() * width;
+          }
+          if (p.x < -4) p.x = width + 4;
+          if (p.x > width + 4) p.x = -4;
+        }
+        ctx.globalAlpha = p.opacity;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+    }
+
+    resize();
+    draw(0);
+    window.addEventListener('resize', () => {
+      resize();
+      draw(0);
+    });
+
+    if (!reducedMotion) {
+      let lastTime = null;
+      function frame(now) {
+        if (lastTime !== null) draw((now - lastTime) / 1000);
+        lastTime = now;
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+  }
 })();
