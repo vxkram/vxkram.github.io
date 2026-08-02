@@ -82,6 +82,7 @@ ul{list-style:none}
   position:fixed;inset:0;
   pointer-events:none;
   background-repeat:repeat;
+  image-rendering:pixelated;
 }
 .grain-overlay--fine{
   z-index:2;
