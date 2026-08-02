@@ -104,4 +104,29 @@
   });
 
   updateCurrentFromScroll();
+
+  // Vinyl player: click toggles playback, disc only spins while actually
+  // playing, icon/aria-pressed stay in sync with real audio state (not just
+  // the click) so a play() rejection (e.g. autoplay policy) doesn't leave
+  // the UI claiming it's playing when it isn't.
+  const vinylButton = document.getElementById('vinyl-player');
+  const vinylAudio = document.getElementById('vinyl-audio');
+  const vinylIcon = vinylButton ? vinylButton.querySelector('.vinyl-icon') : null;
+  if (vinylButton && vinylAudio) {
+    vinylButton.addEventListener('click', () => {
+      if (vinylAudio.paused) {
+        vinylAudio.play().catch(() => {});
+      } else {
+        vinylAudio.pause();
+      }
+    });
+    vinylAudio.addEventListener('play', () => {
+      vinylButton.setAttribute('aria-pressed', 'true');
+      if (vinylIcon) vinylIcon.textContent = '❚❚';
+    });
+    vinylAudio.addEventListener('pause', () => {
+      vinylButton.setAttribute('aria-pressed', 'false');
+      if (vinylIcon) vinylIcon.textContent = '▶';
+    });
+  }
 })();
