@@ -55,7 +55,7 @@ ul{list-style:none}
   /* Dark tints of --orange/--teal, not the full-brightness accent colors --
      those are tuned for small text/icons on a dark backdrop, and light
      enough as a full-page wash to wash out --text-dim and the nav dots. */
-  background:linear-gradient(135deg, hsl(25 85% 16%), hsl(176 70% 14%));
+  background:linear-gradient(135deg, hsl(25 85% 9%), hsl(176 70% 8%));
 }
 
 /* ── PANEL FLOW (compact, no forced full-viewport height) ── */
