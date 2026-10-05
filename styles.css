@@ -343,7 +343,7 @@ ul{list-style:none}
   border:1px solid var(--line-2);
   padding:.3rem .55rem;border-radius:5px;
 }
-.tag-icon{width:13px;height:13px;flex-shrink:0;opacity:.75}
+.tag-icon{width:13px;height:13px;flex-shrink:0;fill:currentColor;opacity:.85}
 
 /* ── SKILLS ── */
 .skills{padding-top:.5rem;padding-bottom:.5rem}
