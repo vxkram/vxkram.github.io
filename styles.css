@@ -50,17 +50,34 @@ ul{list-style:none}
 }
 
 /* ── BACKGROUND LAYERS (fixed, behind content) ── */
-.gradient-mesh{
+/* Near-black base with a couple of soft glows -- glass panels need
+   something with tonal variation behind them, or backdrop-filter blurs
+   flat black into flat black and the effect is invisible. */
+.bg-base{
   position:fixed;inset:0;z-index:0;
-  /* Dark tints of --orange/--teal, not the full-brightness accent colors --
-     those are tuned for small text/icons on a dark backdrop, and light
-     enough as a full-page wash to wash out --text-dim and the nav dots. */
-  background:linear-gradient(135deg, hsl(25 85% 9%), hsl(176 70% 8%));
+  background:
+    radial-gradient(60vmax 45vmax at 85% -5%, rgba(255,122,41,.10), transparent 60%),
+    radial-gradient(55vmax 40vmax at 0% 60%, rgba(255,255,255,.06), transparent 65%),
+    radial-gradient(40vmax 30vmax at 70% 110%, rgba(255,255,255,.05), transparent 60%),
+    #050505;
 }
 
 .dots-bg{
   position:fixed;inset:0;z-index:1;pointer-events:none;
   width:100%;height:100%;
+}
+
+/* Grain: a pre-rendered 512px tile drawn at 256 CSS px, so it maps 1:1 to
+   device pixels on 2x screens and stays sharp at 1x. A tiled image rather
+   than a live SVG feTurbulence filter -- the filter rendered soft/blurry in
+   Chrome, while image tiling is sampled the same in every engine. Sits
+   above everything (z-index 50) but never takes pointer events. */
+.grain{
+  position:fixed;inset:0;z-index:50;pointer-events:none;
+  background:url(./grain.png) repeat;
+  background-size:256px 256px;
+  mix-blend-mode:overlay;
+  opacity:.16;
 }
 
 /* ── PANEL FLOW (compact, no forced full-viewport height) ── */
