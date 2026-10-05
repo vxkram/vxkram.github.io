@@ -5,11 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Vikram Aditya — AI/ML Engineer</title>
 <meta name="description" content="Vikram Aditya — AI/ML Engineer building RAG pipelines, fine-tuned LLMs, and full-stack products.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23040403'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Space Grotesk,sans-serif' font-weight='700' fill='%23FF7A29' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#050505">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23050505'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Space Mono,monospace' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./styles.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
@@ -19,193 +21,279 @@
 
 <div id="sr-live" class="sr-only" aria-live="polite"></div>
 
-<a class="skip-link" href="#dot-nav">Skip to panel navigation</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<div id="panels" class="panels">
+<header class="topnav-wrap">
+  <nav class="topnav glass-bar" aria-label="Primary">
+    <a class="brand" href="#panel-0">Vikram Aditya</a>
+    <span class="corner-label" id="corner-label" aria-hidden="true">01 / 05</span>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#panel-1" data-nav="1">Experience</a></li>
+      <li><a href="#panel-2" data-nav="2">Projects</a></li>
+      <li><a href="#panel-3" data-nav="3">Skills</a></li>
+      <li><a href="#panel-4" data-nav="4">Contact</a></li>
+    </ul>
+    <a class="btn btn-glass btn-sm nav-cta" href="./Vikram%20Resume.pdf" download>Résumé ↓</a>
+  </nav>
+</header>
 
-  <section class="panel" id="panel-0" data-index="0" data-label="Intro" aria-label="Intro">
-    <div class="panel-inner hero-inner">
-      <p class="eyebrow"><span class="sdot" aria-hidden="true"></span> AI ENGINEER · BANGALORE, INDIA</p>
-      <h1 class="hero-name">Vikram Aditya</h1>
-      <p class="hero-tagline">Building products that work in production.</p>
-      <p class="hero-sub">RAG pipelines <span class="dash">·</span> Fine-tuning LLMs <span class="dash">·</span> Full Stack</p>
-      <div class="link-row">
-        <a href="https://github.com/vxkram" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/rvikramaditya/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:vikramaditya2805@gmail.com">Email</a>
-        <a href="./Vikram%20Resume.pdf" download>Resume</a>
+
+<main id="main" class="panels">
+
+  <section class="panel hero" id="panel-0" data-index="0" data-label="Intro" aria-label="Intro">
+    <div class="wrap">
+      <p class="chip reveal"><span class="sdot" aria-hidden="true"></span> AI Engineer · Bangalore, India</p>
+      <h1 class="hero-name reveal">Vikram Aditya</h1>
+      <p class="hero-tagline reveal">Building products that work in production.</p>
+      <p class="hero-sub reveal">RAG pipelines <span class="sep">/</span> Fine-tuning LLMs <span class="sep">/</span> Full Stack</p>
+      <div class="btn-row reveal">
+        <a class="btn btn-solid" href="#panel-2">View projects →</a>
+        <a class="btn btn-glass" href="https://github.com/vxkram" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn btn-glass" href="https://www.linkedin.com/in/rvikramaditya/" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
     </div>
   </section>
 
   <section class="panel" id="panel-1" data-index="1" data-label="Experience" aria-label="Experience">
-    <div class="panel-inner">
-      <p class="panel-kicker">01 / Experience</p>
-      <div class="role-header">
-        <h2>Thoughtfocus</h2>
-        <p class="role-meta">AI Engineer <span class="dash">·</span> Jan 2025 — Present</p>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">01 / Experience</p>
+        <h2 class="section-title">Where I've worked</h2>
       </div>
-      <div class="story-grid">
-        <div class="story">
-          <h3>HR Q&amp;A System</h3>
-          <ul>
-            <li>Semantic chunking + all-MiniLM-L6-v2 embeddings + FAISS retrieval over 200+ policy documents</li>
-            <li>Fine-tuned Qwen 3 via Unsloth/QLoRA, served through Ollama</li>
-            <li>Role-based access control and workflow-aware retrieval</li>
-          </ul>
+
+      <article class="window reveal">
+        <div class="window-bar"><span class="prompt">~$</span> <span class="path">experience/thoughtfocus.txt</span> <span class="badge">Current</span></div>
+        <div class="window-body">
+          <div class="role-header">
+            <h3 class="role-name">Thoughtfocus</h3>
+            <p class="role-meta"><span class="nowrap">AI Engineer</span> <span class="sep">·</span> <span class="nowrap">Jan 2025 — Present</span></p>
+          </div>
+          <div class="story-grid">
+            <div class="window window--sub story">
+              <div class="window-bar"><span class="prompt">~$</span> <span class="path">thoughtfocus/hr-qa-system.md</span> <span class="badge">Project</span></div>
+              <div class="window-body">
+                <h4>HR Q&amp;A System</h4>
+                <ul class="bullets">
+              <li>Semantic chunking + all-MiniLM-L6-v2 embeddings + FAISS retrieval over 200+ policy documents</li>
+              <li>Fine-tuned Qwen 3 via Unsloth/QLoRA, served through Ollama</li>
+              <li>Role-based access control and workflow-aware retrieval</li>
+            </ul>
+              </div>
+            </div>
+            <div class="window window--sub story">
+              <div class="window-bar"><span class="prompt">~$</span> <span class="path">thoughtfocus/pitstop-manager.md</span> <span class="badge">Project</span></div>
+              <div class="window-body">
+                <h4>PitStop Manager</h4>
+                <ul class="bullets">
+              <li>React + Spring Boot REST APIs on Azure Container Apps, PostgreSQL, and Blob Storage</li>
+              <li>Azure AD SSO authentication</li>
+              <li>Semantic skill-similarity matching between resumes and job descriptions</li>
+            </ul>
+              </div>
+            </div>
+          </div>
+          <p class="footnote">Also automated AEM form regression testing with Selenium + Faker (−60% manual effort), and mentored an intern on RAG pipeline development.</p>
         </div>
-        <div class="story">
-          <h3>PitStop Manager</h3>
-          <ul>
-            <li>React + Spring Boot REST APIs on Azure Container Apps, PostgreSQL, and Blob Storage</li>
-            <li>Azure AD SSO authentication</li>
-            <li>Semantic skill-similarity matching between resumes and job descriptions</li>
-          </ul>
-        </div>
-      </div>
-      <p class="footnote">Also automated AEM form regression testing with Selenium + Faker (−60% manual effort), and mentored an intern on RAG pipeline development.</p>
+      </article>
+
       <div class="earlier-row">
-        <div class="earlier-item">
-          <h4>Tech Mahindra <span class="role-meta-inline">· Nov 2024 – Jan 2025</span></h4>
-          <p>RAG workflow benchmarking on Project Indus (Hugging Face, PEFT, TRL, GCP); Django/MySQL internship platform.</p>
-        </div>
-        <div class="earlier-item">
-          <h4>Mavencart <span class="role-meta-inline">· Jun 2023 – Aug 2023</span></h4>
-          <p>Backend for AI products — a generative AI writer and a social media template generator.</p>
-        </div>
+        <article class="window reveal">
+          <div class="window-bar"><span class="prompt">~$</span> <span class="path">experience/tech-mahindra.txt</span> <span class="badge">Nov 2024 – Jan 2025</span></div>
+          <div class="window-body">
+            <h4>Tech Mahindra</h4>
+            <p>RAG workflow benchmarking on Project Indus (Hugging Face, PEFT, TRL, GCP); Django/MySQL internship platform.</p>
+          </div>
+        </article>
+        <article class="window reveal">
+          <div class="window-bar"><span class="prompt">~$</span> <span class="path">experience/mavencart.txt</span> <span class="badge">Jun 2023 – Aug 2023</span></div>
+          <div class="window-body">
+            <h4>Mavencart</h4>
+            <p>Backend for AI products — a generative AI writer and a social media template generator.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
   <section class="panel" id="panel-2" data-index="2" data-label="Projects" aria-label="Projects">
-    <div class="panel-inner panel-inner--wide">
-      <p class="panel-kicker">02 / Projects</p>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">02 / Projects</p>
+        <h2 class="section-title">Things I've built</h2>
+      </div>
       <div class="project-grid">
-        <div class="project">
-          <h3>LLM Sentinel</h3>
-          <p>API gateway in front of multiple LLM providers — Redis-backed rate limiting and per-team budgets, a shared circuit breaker with automatic failover, and full OpenTelemetry/Prometheus/Grafana observability. Runs at $0 via Ollama plus real-wire-format OpenAI/Anthropic mocks.</p>
-          <div class="tag-row">
-            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/fastapi/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">FastAPI</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/redis/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Redis</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/docker/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Docker</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/grafana/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Grafana</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/opentelemetry/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">OpenTelemetry</span>
+        <article class="window project reveal">
+          <div class="window-bar"><span class="prompt">~$</span> <span class="path">projects/llm-sentinel</span> <span class="badge">Open source</span></div>
+          <div class="window-body">
+            <h3>LLM Sentinel</h3>
+            <p>API gateway in front of multiple LLM providers — Redis-backed rate limiting and per-team budgets, a shared circuit breaker with automatic failover, and full OpenTelemetry/Prometheus/Grafana observability. Runs at $0 via Ollama plus real-wire-format OpenAI/Anthropic mocks.</p>
+            <div class="tag-row">
+              <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/fastapi/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">FastAPI</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/redis/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Redis</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/docker/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Docker</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/grafana/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Grafana</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/opentelemetry/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">OpenTelemetry</span>
+            </div>
+            <a href="https://github.com/vxkram/llm-sentinel" target="_blank" rel="noopener" class="card-link">GitHub ↗</a>
           </div>
-          <a href="https://github.com/vxkram/llm-sentinel" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
-        </div>
-        <div class="project">
-          <h3>HR Q&amp;A System</h3>
-          <p>A document-aware AI assistant for querying enterprise PDFs and structured data — semantic retrieval over policy documents with a locally fine-tuned Qwen 3 model for domain-specific response generation.</p>
-          <div class="tag-row">
-            <span class="tag">RAG</span><span class="tag">FAISS</span><span class="tag">Qwen 3</span><span class="tag">Unsloth</span>
+        </article>
+        <article class="window project reveal">
+          <div class="window-bar"><span class="prompt">~$</span> <span class="path">projects/hr-qa-system</span> <span class="badge">Internal</span></div>
+          <div class="window-body">
+            <h3>HR Q&amp;A System</h3>
+            <p>A document-aware AI assistant for querying enterprise PDFs and structured data — semantic retrieval over policy documents with a locally fine-tuned Qwen 3 model for domain-specific response generation.</p>
+            <div class="tag-row">
+              <span class="tag">RAG</span><span class="tag">FAISS</span><span class="tag">Qwen 3</span><span class="tag">Unsloth</span>
+            </div>
+            <span class="card-note">Internal project — case study</span>
           </div>
-          <span class="project-note">Internal project — case study</span>
-        </div>
-        <div class="project">
-          <h3>Intelligent Tutoring System</h3>
-          <p>DBMS study app where quiz results drive tiered resource recommendations in real time, plus PDF summarization and a text/video learning hub.</p>
-          <div class="tag-row">
-            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/fastapi/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">FastAPI</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/react/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">React</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/mongodb/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">MongoDB</span>
+        </article>
+        <article class="window project reveal">
+          <div class="window-bar"><span class="prompt">~$</span> <span class="path">projects/intelligent-tutoring-system</span> <span class="badge">Open source</span></div>
+          <div class="window-body">
+            <h3>Intelligent Tutoring System</h3>
+            <p>DBMS study app where quiz results drive tiered resource recommendations in real time, plus PDF summarization and a text/video learning hub.</p>
+            <div class="tag-row">
+              <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/fastapi/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">FastAPI</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/react/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">React</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/mongodb/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">MongoDB</span>
+            </div>
+            <a href="https://github.com/vxkram/intelligent-tutoring-system" target="_blank" rel="noopener" class="card-link">GitHub ↗</a>
           </div>
-          <a href="https://github.com/vxkram/intelligent-tutoring-system" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
-        </div>
-        <div class="project">
-          <h3>Resume Summarizer</h3>
-          <p>Upload a resume PDF and get a GPT-generated summary plus tailored interview questions, with a review flow to answer and save them.</p>
-          <div class="tag-row">
-            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/django/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Django</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/react/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">React</span><span class="tag">OpenAI</span>
+        </article>
+        <article class="window project reveal">
+          <div class="window-bar"><span class="prompt">~$</span> <span class="path">projects/resume-summarizer</span> <span class="badge">Open source</span></div>
+          <div class="window-body">
+            <h3>Resume Summarizer</h3>
+            <p>Upload a resume PDF and get a GPT-generated summary plus tailored interview questions, with a review flow to answer and save them.</p>
+            <div class="tag-row">
+              <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/django/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Django</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/react/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">React</span><span class="tag">OpenAI</span>
+            </div>
+            <a href="https://github.com/vxkram/resume-summarizer" target="_blank" rel="noopener" class="card-link">GitHub ↗</a>
           </div>
-          <a href="https://github.com/vxkram/resume-summarizer" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
-        </div>
-        <div class="project">
-          <h3>AI Ad Template Generator</h3>
-          <p>Two-step ad banner pipeline — Stable Diffusion img2img restyles a product photo, then a compositing pass lays out a logo, brand-colored CTA button, and punchline text.</p>
-          <div class="tag-row">
-            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/fastapi/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">FastAPI</span><span class="tag">Diffusers</span><span class="tag">Stable Diffusion</span>
+        </article>
+        <article class="window project reveal">
+          <div class="window-bar"><span class="prompt">~$</span> <span class="path">projects/ad-template-generator</span> <span class="badge">Open source</span></div>
+          <div class="window-body">
+            <h3>AI Ad Template Generator</h3>
+            <p>Two-step ad banner pipeline — Stable Diffusion img2img restyles a product photo, then a compositing pass lays out a logo, brand-colored CTA button, and punchline text.</p>
+            <div class="tag-row">
+              <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/fastapi/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">FastAPI</span><span class="tag">Diffusers</span><span class="tag">Stable Diffusion</span>
+            </div>
+            <a href="https://github.com/vxkram/ad_template" target="_blank" rel="noopener" class="card-link">GitHub ↗</a>
           </div>
-          <a href="https://github.com/vxkram/ad_template" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
-        </div>
-        <div class="project">
-          <h3>Face Mask Detector</h3>
-          <p>MobileNetV2 transfer-learning classifier (97.6% validation accuracy) behind a Flask API with a live browser upload UI — mask, no mask, or worn incorrectly, with per-class confidence.</p>
-          <div class="tag-row">
-            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/tensorflow/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">TensorFlow</span><span class="tag">MobileNetV2</span><span class="tag">Flask</span>
+        </article>
+        <article class="window project reveal">
+          <div class="window-bar"><span class="prompt">~$</span> <span class="path">projects/face-mask-detection</span> <span class="badge">Open source</span></div>
+          <div class="window-body">
+            <h3>Face Mask Detector</h3>
+            <p>MobileNetV2 transfer-learning classifier (97.6% validation accuracy) behind a Flask API with a live browser upload UI — mask, no mask, or worn incorrectly, with per-class confidence.</p>
+            <div class="tag-row">
+              <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/tensorflow/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">TensorFlow</span><span class="tag">MobileNetV2</span><span class="tag">Flask</span>
+            </div>
+            <a href="https://github.com/vxkram/face-mask-detection" target="_blank" rel="noopener" class="card-link">GitHub ↗</a>
           </div>
-          <a href="https://github.com/vxkram/face-mask-detection" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
-        </div>
-        <div class="project">
-          <h3>Image Colorization</h3>
-          <p>OpenCV DNN inference with a pretrained Caffe model predicts ab channels in LAB color space to reconstruct colorized images from grayscale input, wrapped in a Flask web UI.</p>
-          <div class="tag-row">
-            <span class="tag">Python</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/opencv/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">OpenCV</span><span class="tag">Flask</span>
+        </article>
+        <article class="window project reveal">
+          <div class="window-bar"><span class="prompt">~$</span> <span class="path">projects/image-colorization</span> <span class="badge">Open source</span></div>
+          <div class="window-body">
+            <h3>Image Colorization</h3>
+            <p>OpenCV DNN inference with a pretrained Caffe model predicts ab channels in LAB color space to reconstruct colorized images from grayscale input, wrapped in a Flask web UI.</p>
+            <div class="tag-row">
+              <span class="tag">Python</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/opencv/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">OpenCV</span><span class="tag">Flask</span>
+            </div>
+            <a href="https://github.com/vxkram/image-colorization" target="_blank" rel="noopener" class="card-link">GitHub ↗</a>
           </div>
-          <a href="https://github.com/vxkram/image-colorization" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
   <section class="panel" id="panel-3" data-index="3" data-label="Skills" aria-label="Skills">
-    <div class="panel-inner">
-      <p class="panel-kicker">03 / Skills</p>
-      <div class="skills-grid">
-        <div class="skill-group">
-          <h3>Languages</h3>
-          <div class="tag-row">
-            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/python/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Python</span><span class="tag">Java</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/javascript/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">JavaScript</span><span class="tag">SQL</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/cplusplus/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">C++</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>ML &amp; AI</h3>
-          <div class="tag-row">
-            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/tensorflow/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">TensorFlow</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/keras/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Keras</span><span class="tag">PEFT</span><span class="tag">TRL</span><span class="tag">Unsloth</span><span class="tag">QLoRA</span><span class="tag">FAISS</span><span class="tag">Sentence Transformers</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/ollama/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Ollama</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/huggingface/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Hugging Face</span><span class="tag">Diffusers</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>Backend &amp; Web</h3>
-          <div class="tag-row">
-            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/springboot/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Spring Boot</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/fastapi/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">FastAPI</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/django/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Django</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/react/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">React</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/nodedotjs/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Node.js</span><span class="tag">REST APIs</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/streamlit/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Streamlit</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>Cloud &amp; Data</h3>
-          <div class="tag-row">
-            <span class="tag">Azure Container Apps</span><span class="tag">Azure Blob Storage</span><span class="tag">Azure AD</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/postgresql/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Azure PostgreSQL</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/mysql/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">MySQL</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/mongodb/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">MongoDB</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>Tooling</h3>
-          <div class="tag-row">
-            <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/numpy/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">NumPy</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/pandas/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">pandas</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/scikitlearn/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">scikit-learn</span><span class="tag">Matplotlib</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/opencv/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">OpenCV</span><span class="tag">NLTK</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/selenium/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Selenium</span><span class="tag">Playwright</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/faker/2BD9C9" alt="" width="14" height="14" loading="lazy" onerror="this.remove()">Faker</span>
-          </div>
-        </div>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">03 / Skills</p>
+        <h2 class="section-title">Toolkit</h2>
       </div>
+      <article class="window reveal">
+        <div class="window-bar"><span class="prompt">~$</span> <span class="path">skills/stack.json</span> <span class="badge">Toolkit</span></div>
+        <div class="window-body skills">
+          <div class="skill-row">
+            <h3>Languages</h3>
+            <div class="tag-row">
+              <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/python/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Python</span><span class="tag">Java</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/javascript/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">JavaScript</span><span class="tag">SQL</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/cplusplus/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">C++</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <h3>ML &amp; AI</h3>
+            <div class="tag-row">
+              <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/tensorflow/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">TensorFlow</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/keras/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Keras</span><span class="tag">PEFT</span><span class="tag">TRL</span><span class="tag">Unsloth</span><span class="tag">QLoRA</span><span class="tag">FAISS</span><span class="tag">Sentence Transformers</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/ollama/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Ollama</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/huggingface/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Hugging Face</span><span class="tag">Diffusers</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <h3>Backend &amp; Web</h3>
+            <div class="tag-row">
+              <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/springboot/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Spring Boot</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/fastapi/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">FastAPI</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/django/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Django</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/react/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">React</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/nodedotjs/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Node.js</span><span class="tag">REST APIs</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/streamlit/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Streamlit</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <h3>Cloud &amp; Data</h3>
+            <div class="tag-row">
+              <span class="tag">Azure Container Apps</span><span class="tag">Azure Blob Storage</span><span class="tag">Azure AD</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/postgresql/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Azure PostgreSQL</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/mysql/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">MySQL</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/mongodb/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">MongoDB</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <h3>Tooling</h3>
+            <div class="tag-row">
+              <span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/numpy/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">NumPy</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/pandas/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">pandas</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/scikitlearn/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">scikit-learn</span><span class="tag">Matplotlib</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/opencv/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">OpenCV</span><span class="tag">NLTK</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/selenium/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Selenium</span><span class="tag">Playwright</span><span class="tag"><img class="tag-icon" src="https://cdn.simpleicons.org/faker/ffffff" alt="" width="13" height="13" loading="lazy" onerror="this.remove()">Faker</span>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
   <section class="panel" id="panel-4" data-index="4" data-label="Contact" aria-label="Contact">
-    <div class="panel-inner contact-inner">
-      <p class="panel-kicker">04 / Contact</p>
-      <h2 class="contact-heading">Let's talk.</h2>
-      <p class="contact-sub">Open to conversations about AI engineering, RAG systems, and interesting problems.</p>
-      <div class="link-row link-row-large">
-        <a href="mailto:vikramaditya2805@gmail.com">vikramaditya2805@gmail.com</a>
-        <a href="https://github.com/vxkram" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/rvikramaditya/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="./Vikram%20Resume.pdf" download>Download Résumé</a>
-      </div>
-      <p class="footer-note">© 2026 Vikram Aditya</p>
+    <div class="wrap">
+      <article class="window contact reveal">
+        <div class="window-bar"><span class="prompt">~$</span> <span class="path">contact/hello.sh</span> <span class="badge">Say hi</span></div>
+        <div class="window-body">
+          <p class="kicker">04 / Contact</p>
+          <h2 class="contact-heading">Let's talk.</h2>
+          <p class="contact-sub">Open to conversations about AI engineering, RAG systems, and interesting problems.</p>
+          <div class="btn-row">
+            <a class="btn btn-solid" href="mailto:vikramaditya2805@gmail.com">vikramaditya2805@gmail.com</a>
+            <a class="btn btn-glass" href="./Vikram%20Resume.pdf" download>Download Résumé ↓</a>
+          </div>
+        </div>
+      </article>
+
+      <footer class="site-footer reveal">
+        <div class="footer-cols">
+          <div>
+            <p class="footer-head">Navigate</p>
+            <ul>
+              <li><a href="#panel-1">Experience</a></li>
+              <li><a href="#panel-2">Projects</a></li>
+              <li><a href="#panel-3">Skills</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="footer-head">Elsewhere</p>
+            <ul>
+              <li><a href="https://github.com/vxkram" target="_blank" rel="noopener">GitHub ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/rvikramaditya/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="footer-head">Contact</p>
+            <ul>
+              <li><a href="mailto:vikramaditya2805@gmail.com">Email</a></li>
+              <li><a href="./Vikram%20Resume.pdf" download>Résumé</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="footer-note">© 2026 Vikram Aditya</p>
+      </footer>
     </div>
   </section>
 
-</div>
-
-<nav class="dot-nav" id="dot-nav" aria-label="Panel navigation">
-  <button class="dot" data-goto="0" aria-label="Go to panel 1: Intro"></button>
-  <button class="dot" data-goto="1" aria-label="Go to panel 2: Experience"></button>
-  <button class="dot" data-goto="2" aria-label="Go to panel 3: Projects"></button>
-  <button class="dot" data-goto="3" aria-label="Go to panel 4: Skills"></button>
-  <button class="dot" data-goto="4" aria-label="Go to panel 5: Contact"></button>
-</nav>
-
-<div class="corner-label" id="corner-label" aria-hidden="true">01 / 05</div>
-
+</main>
 
 <script src="./script.js"></script>
 </body>
