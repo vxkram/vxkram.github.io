@@ -146,12 +146,10 @@
     revealEls.forEach((el) => observer.observe(el));
   }
 
-  // Floating dots background: slow-drifting white particles over the
-  // gradient. Canvas is sized in device pixels (canvas.width/height) but
-  // drawn against CSS-pixel coordinates via ctx.scale(dpr, dpr), so dots
-  // stay crisp at any devicePixelRatio -- same reasoning as the grain-tile
-  // fix earlier, just applied from the start this time instead of after
-  // shipping a fixed-resolution version.
+  // Floating dots background: slow-drifting white particles over the black
+  // page. Canvas is sized in device pixels (canvas.width/height) but drawn
+  // against CSS-pixel coordinates via ctx.setTransform(dpr...), so dots
+  // stay crisp at any devicePixelRatio.
   const dotsCanvas = document.getElementById('dots-bg');
   if (dotsCanvas) {
     const ctx = dotsCanvas.getContext('2d');
@@ -160,6 +158,21 @@
     let particles = [];
     const DENSITY = 1 / 18000; // particles per CSS px^2
 
+    function makeParticle() {
+      return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: 0.6 + Math.random() * 1.4,
+        speed: 6 + Math.random() * 14, // CSS px per second, drifting upward
+        drift: (Math.random() - 0.5) * 6,
+        opacity: 0.15 + Math.random() * 0.35,
+      };
+    }
+
+    // Keeps existing particles across resizes and only adds/drops the
+    // difference: mobile browsers fire resize whenever the address bar
+    // shows or hides mid-scroll, and regenerating everything made the dots
+    // visibly reshuffle each time.
     function resize() {
       const dpr = window.devicePixelRatio || 1;
       width = window.innerWidth;
@@ -168,14 +181,8 @@
       dotsCanvas.height = Math.round(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const count = Math.round(width * height * DENSITY);
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: 0.6 + Math.random() * 1.4,
-        speed: 6 + Math.random() * 14, // CSS px per second, drifting upward
-        drift: (Math.random() - 0.5) * 6,
-        opacity: 0.15 + Math.random() * 0.35,
-      }));
+      while (particles.length < count) particles.push(makeParticle());
+      particles.length = count;
     }
 
     function draw(deltaSeconds) {
@@ -210,7 +217,9 @@
     if (!reducedMotion) {
       let lastTime = null;
       function frame(now) {
-        if (lastTime !== null) draw((now - lastTime) / 1000);
+        // Cap the step: after the tab has been in the background, rAF
+        // resumes with a multi-second gap that would teleport every dot.
+        if (lastTime !== null) draw(Math.min((now - lastTime) / 1000, 0.1));
         lastTime = now;
         requestAnimationFrame(frame);
       }
