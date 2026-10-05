@@ -2,7 +2,7 @@
   'use strict';
 
   const panels = Array.from(document.querySelectorAll('.panel'));
-  const dots = Array.from(document.querySelectorAll('.dot'));
+  const navLinks = Array.from(document.querySelectorAll('[data-nav]'));
   const cornerLabel = document.getElementById('corner-label');
   const srLive = document.getElementById('sr-live');
   const total = panels.length;
@@ -13,11 +13,11 @@
 
   function setCurrentIndex(index) {
     currentIndex = Math.max(0, Math.min(total - 1, index));
-    dots.forEach((dot, i) => {
-      if (i === currentIndex) {
-        dot.setAttribute('aria-current', 'true');
+    navLinks.forEach((link) => {
+      if (Number(link.dataset.nav) === currentIndex) {
+        link.setAttribute('aria-current', 'true');
       } else {
-        dot.removeAttribute('aria-current');
+        link.removeAttribute('aria-current');
       }
     });
     if (cornerLabel) {
@@ -30,9 +30,10 @@
     }
   }
 
-  // Native vertical page scroll + CSS scroll-snap does the actual moving;
-  // this just drives it for keyboard/dot-nav input rather than intercepting
-  // wheel/touch, which stay untouched.
+  // Native vertical page scroll does the actual moving; this just drives it
+  // for keyboard input rather than intercepting wheel/touch, which stay
+  // untouched. Top-nav links are plain #anchors (scroll-padding-top in CSS
+  // keeps them clear of the fixed nav), so they need no handler here.
   function goToPanel(index) {
     index = Math.max(0, Math.min(total - 1, index));
     panels[index].scrollIntoView({
@@ -42,7 +43,7 @@
     setCurrentIndex(index);
   }
 
-  // Keyboard navigation — primary non-gesture path alongside the dot nav.
+  // Keyboard navigation — section-by-section, alongside the top nav.
   window.addEventListener('keydown', (e) => {
     switch (e.key) {
       case 'ArrowDown':
@@ -68,12 +69,7 @@
     }
   });
 
-  // Dot nav.
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => goToPanel(i));
-  });
-
-  // Keep currentIndex accurate for ALL input methods (scroll, dot clicks,
+  // Keep currentIndex accurate for ALL input methods (scroll, nav clicks,
   // keyboard). Sections are compact now (not forced to fill the viewport),
   // so an intersection-ratio threshold isn't reliable — instead pick the
   // last section whose top has crossed a line near the top of the viewport.
@@ -104,6 +100,51 @@
   });
 
   updateCurrentFromScroll();
+
+  // Mobile nav: the link list collapses behind a Menu toggle under 760px.
+  // Close it again after a link is picked or on Escape, so it never stays
+  // open covering the section that was just navigated to.
+  const navToggle = document.getElementById('nav-toggle');
+  const navList = document.getElementById('nav-links');
+  if (navToggle && navList) {
+    function setMenuOpen(open) {
+      navList.classList.toggle('is-open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.textContent = open ? 'Close' : 'Menu';
+    }
+    navToggle.addEventListener('click', () => {
+      setMenuOpen(!navList.classList.contains('is-open'));
+    });
+    navList.addEventListener('click', (e) => {
+      if (e.target.closest('a')) setMenuOpen(false);
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navList.classList.contains('is-open')) {
+        setMenuOpen(false);
+        navToggle.focus();
+      }
+    });
+  }
+
+  // Scroll reveal: .reveal elements fade/slide up once as they enter the
+  // viewport. Siblings entering together get a small stagger so a row of
+  // cards cascades instead of popping in as one block. Without
+  // IntersectionObserver (or with reduced motion) everything is shown
+  // immediately.
+  const revealEls = Array.from(document.querySelectorAll('.reveal'));
+  if (reducedMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach((el) => el.classList.add('is-in'));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      const entering = entries.filter((entry) => entry.isIntersecting);
+      entering.forEach((entry, i) => {
+        entry.target.style.transitionDelay = Math.min(i * 70, 350) + 'ms';
+        entry.target.classList.add('is-in');
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    revealEls.forEach((el) => observer.observe(el));
+  }
 
   // Floating dots background: slow-drifting white particles over the
   // gradient. Canvas is sized in device pixels (canvas.width/height) but
