@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Vikram Aditya — AI/ML Engineer</title>
-<meta name="description" content="Vikram Aditya — AI/ML Engineer building RAG pipelines, fine-tuned LLMs, and full-stack products.">
+<title>Vikram Aditya — AI &amp; Backend Engineer</title>
+<meta name="description" content="Vikram Aditya — AI &amp; Backend Engineer building RAG pipelines, fine-tuned LLMs, and full-stack platforms on Azure.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="./favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
@@ -46,10 +46,10 @@
 
   <section class="panel hero" id="panel-0" data-index="0" data-label="Intro" aria-label="Intro">
     <div class="wrap">
-      <p class="chip reveal"><span class="sdot" aria-hidden="true"></span> AI Engineer · Bangalore, India</p>
+      <p class="chip reveal"><span class="sdot" aria-hidden="true"></span> AI &amp; Backend Engineer · Bengaluru, India</p>
       <h1 class="hero-name reveal">Vikram Aditya</h1>
       <p class="hero-tagline reveal">Building products that work in production.</p>
-      <p class="hero-sub reveal">RAG pipelines <span class="sep">/</span> Fine-tuning LLMs <span class="sep">/</span> Full Stack</p>
+      <p class="hero-sub reveal">RAG pipelines <span class="sep">/</span> Fine-tuning LLMs <span class="sep">/</span> Full stack on Azure <span class="sep">/</span> MLOps</p>
       <div class="btn-row reveal">
         <a class="btn btn-solid" href="#panel-2">View projects →</a>
         <a class="btn btn-glass" href="https://github.com/vxkram" target="_blank" rel="noopener">GitHub ↗</a>
@@ -69,8 +69,8 @@
         <div class="window-bar"><span class="prompt">~$</span> <span class="path">experience/thoughtfocus.txt</span> <span class="badge">Current</span></div>
         <div class="window-body">
           <div class="role-header">
-            <h3 class="role-name">Thoughtfocus</h3>
-            <p class="role-meta"><span class="nowrap">AI Engineer</span> <span class="sep">·</span> <span class="nowrap">Jan 2025 — Present</span></p>
+            <h3 class="role-name">ThoughtFocus</h3>
+            <p class="role-meta"><span class="nowrap">Associate Engineer</span> <span class="sep">·</span> <span class="nowrap">Jan 2025 — Present</span> <span class="sep">·</span> <span class="nowrap">Promoted from Trainee Engineer (Aug 2026)</span></p>
           </div>
           <div class="story-grid">
             <div class="window window--sub story">
@@ -80,23 +80,39 @@
                 <ul class="bullets">
               <li>Semantic chunking + all-MiniLM-L6-v2 embeddings + FAISS retrieval over 200+ policy documents</li>
               <li>Fine-tuned Qwen 3 via Unsloth/QLoRA, served through Ollama</li>
-              <li>Role-based access control and workflow-aware retrieval</li>
+              <li>Agentic tool-calling that raises IT tickets and sends automated HR emails</li>
+              <li>Role-based access control over document retrieval</li>
             </ul>
               </div>
             </div>
             <div class="window window--sub story">
-              <div class="window-bar"><span class="prompt">~$</span> <span class="path">thoughtfocus/pitstop-manager.md</span> <span class="badge">Project</span></div>
+              <div class="window-bar"><span class="prompt">~$</span> <span class="path">thoughtfocus/pitstop-connect.md</span> <span class="badge">Primary developer</span></div>
               <div class="window-body">
-                <h4>PitStop Manager</h4>
+                <h4>PitStop Connect</h4>
+                <p class="story-lede">Talent-deployment platform that runs a 60-day lifecycle for employees between projects.</p>
                 <ul class="bullets">
-              <li>React + Spring Boot REST APIs on Azure Container Apps, PostgreSQL, and Blob Storage</li>
-              <li>Azure AD SSO authentication</li>
-              <li>Semantic skill-similarity matching between resumes and job descriptions</li>
+              <li>React + TypeScript and Spring Boot on PostgreSQL: 69 REST endpoints across 16 modules</li>
+              <li>Reservation and extension-approval workflows, scheduled jobs and a nightly HRMS sync</li>
+              <li>Skill-based JD matching with LLM-written hiring rationales (OpenAI, with a Claude fallback)</li>
+              <li>Entra ID SSO, database-backed email templates and an API-key-secured export API</li>
+              <li>Bicep-provisioned Container Apps, PostgreSQL, Blob Storage and Front Door + WAF; GitHub Actions CI</li>
+            </ul>
+              </div>
+            </div>
+            <div class="window window--sub story story--wide">
+              <div class="window-bar"><span class="prompt">~$</span> <span class="path">thoughtfocus/align.md</span> <span class="badge">Deployment &amp; CI/CD</span></div>
+              <div class="window-body">
+                <h4>ALIGN</h4>
+                <p class="story-lede">Resource-allocation portal with Manager → PMO → Delivery Head approvals. I owned its Azure deployment and CI/CD.</p>
+                <ul class="bullets">
+              <li>Azure Container Apps, Container Registry, Key Vault and Entra ID SSO, using a managed identity with workload identity federation (no stored credentials)</li>
+              <li>Azure DevOps pipeline: ACR cloud builds, schema migrations guarded against data loss, health-checked revisions and rollback steps</li>
+              <li>Migrated the codebase to Azure Repos and ran the dev releases</li>
             </ul>
               </div>
             </div>
           </div>
-          <p class="footnote">Also automated AEM form regression testing with Selenium + Faker (−60% manual effort), and mentored an intern on RAG pipeline development.</p>
+          <p class="footnote">Also automated AEM form regression testing with Selenium + Faker (−60% manual effort) and mentored an intern on retrieval pipeline development. Received the <strong>Most Promising Newcomer</strong> award (2025).</p>
         </div>
       </article>
 
@@ -219,25 +235,31 @@
           <div class="skill-row">
             <h3>Languages</h3>
             <div class="tag-row">
-              <span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#python"/></svg>Python</span><span class="tag">Java</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#javascript"/></svg>JavaScript</span><span class="tag">SQL</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#cplusplus"/></svg>C++</span>
+              <span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#python"/></svg>Python</span><span class="tag">Java</span><span class="tag">TypeScript</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#javascript"/></svg>JavaScript</span><span class="tag">SQL</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#cplusplus"/></svg>C++</span>
             </div>
           </div>
           <div class="skill-row">
             <h3>ML &amp; AI</h3>
             <div class="tag-row">
-              <span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#tensorflow"/></svg>TensorFlow</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#keras"/></svg>Keras</span><span class="tag">PEFT</span><span class="tag">TRL</span><span class="tag">Unsloth</span><span class="tag">QLoRA</span><span class="tag">FAISS</span><span class="tag">Sentence Transformers</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#ollama"/></svg>Ollama</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#huggingface"/></svg>Hugging Face</span><span class="tag">Diffusers</span>
+              <span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#tensorflow"/></svg>TensorFlow</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#keras"/></svg>Keras</span><span class="tag">PEFT</span><span class="tag">TRL</span><span class="tag">Unsloth</span><span class="tag">QLoRA</span><span class="tag">FAISS</span><span class="tag">Sentence Transformers</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#ollama"/></svg>Ollama</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#huggingface"/></svg>Hugging Face</span><span class="tag">Diffusers</span><span class="tag">OpenAI API</span><span class="tag">Claude API</span>
             </div>
           </div>
           <div class="skill-row">
             <h3>Backend &amp; Web</h3>
             <div class="tag-row">
-              <span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#springboot"/></svg>Spring Boot</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#fastapi"/></svg>FastAPI</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#django"/></svg>Django</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#react"/></svg>React</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#nodedotjs"/></svg>Node.js</span><span class="tag">REST APIs</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#streamlit"/></svg>Streamlit</span>
+              <span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#springboot"/></svg>Spring Boot</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#fastapi"/></svg>FastAPI</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#django"/></svg>Django</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#react"/></svg>React</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#nodedotjs"/></svg>Node.js</span><span class="tag">Express</span><span class="tag">REST APIs</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#streamlit"/></svg>Streamlit</span>
             </div>
           </div>
           <div class="skill-row">
-            <h3>Cloud &amp; Data</h3>
+            <h3>Cloud &amp; DevOps</h3>
             <div class="tag-row">
-              <span class="tag">Azure Container Apps</span><span class="tag">Azure Blob Storage</span><span class="tag">Azure AD</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#postgresql"/></svg>Azure PostgreSQL</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#mysql"/></svg>MySQL</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#mongodb"/></svg>MongoDB</span>
+              <span class="tag">Azure Container Apps</span><span class="tag">Azure Container Registry</span><span class="tag">Azure Blob Storage</span><span class="tag">Entra ID / Azure AD</span><span class="tag">Key Vault</span><span class="tag">Front Door + WAF</span><span class="tag">Bicep</span><span class="tag">Azure DevOps</span><span class="tag">GitHub Actions</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#docker"/></svg>Docker</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <h3>Data &amp; Observability</h3>
+            <div class="tag-row">
+              <span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#postgresql"/></svg>Azure PostgreSQL</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#mysql"/></svg>MySQL</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#mongodb"/></svg>MongoDB</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#redis"/></svg>Redis</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#opentelemetry"/></svg>OpenTelemetry</span><span class="tag">Prometheus</span><span class="tag"><svg class="tag-icon" aria-hidden="true" focusable="false"><use href="icons.svg#grafana"/></svg>Grafana</span>
             </div>
           </div>
           <div class="skill-row">

@@ -296,6 +296,8 @@ ul{list-style:none}
 .role-meta .nowrap{white-space:nowrap}
 
 .story-grid{display:grid;gap:1rem;grid-template-columns:repeat(2,1fr)}
+.story--wide{grid-column:1/-1}
+.story-lede{font-size:.88rem;color:var(--dim);line-height:1.55;margin:.2rem 0 .7rem}
 .bullets{display:flex;flex-direction:column;gap:.55rem}
 .bullets li{
   font-size:.88rem;color:var(--dim);line-height:1.55;
