@@ -336,6 +336,23 @@ ul{list-style:none}
 .card-link:hover{color:var(--accent)}
 .card-note{color:var(--faint)}
 
+/* Featured project: spans the grid, screenshot beside the text. "dense"
+   lets the cards after it backfill the row it would otherwise leave open. */
+.project-grid{grid-auto-flow:row dense}
+.project--feature{grid-column:1/-1}
+.project--feature .window-body{
+  display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+  gap:clamp(1.25rem,3vw,2.25rem);align-items:center;
+}
+.project-text{display:flex;flex-direction:column;min-width:0}
+.project-shot{
+  display:block;border-radius:10px;overflow:hidden;
+  border:1px solid var(--line-2);background:#000;
+}
+.project-shot img{display:block;width:100%;height:auto}
+.card-links{display:flex;gap:1.5rem;margin-top:auto}
+.card-links .card-link{margin-top:0}
+
 .tag-row{display:flex;flex-wrap:wrap;gap:.4rem}
 .tag{
   display:inline-flex;align-items:center;gap:.4rem;
@@ -422,6 +439,7 @@ ul{list-style:none}
   .nav-links a{padding:.85rem .75rem;font-size:.75rem}
 
   .story-grid,.earlier-row{grid-template-columns:1fr}
+  .project--feature .window-body{grid-template-columns:1fr}
   .skill-row{grid-template-columns:1fr;gap:.6rem}
   .skill-row h3{padding-top:0}
   .footer-cols{grid-template-columns:repeat(2,minmax(0,1fr))}
