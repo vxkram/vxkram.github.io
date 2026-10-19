@@ -1,229 +1,120 @@
-(function () {
-  'use strict';
+// Theme toggle, live IST clock with timezone note, scroll progress,
+// the sliding stack row and (once there are any) Credly badges.
 
-  const panels = Array.from(document.querySelectorAll('.panel'));
-  const navLinks = Array.from(document.querySelectorAll('[data-nav]'));
-  const cornerLabel = document.getElementById('corner-label');
-  const srLive = document.getElementById('sr-live');
-  const total = panels.length;
+// Add an entry per Credly badge: { name, image, url }. The section stays
+// hidden while this is empty.
+const BADGES = [];
+const CREDLY_PROFILE = "";
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const IST_OFFSET_MIN = 330;
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  let currentIndex = 0;
+/* Theme */
+const root = document.documentElement;
+const toggle = document.getElementById("theme-toggle");
 
-  function setCurrentIndex(index) {
-    currentIndex = Math.max(0, Math.min(total - 1, index));
-    navLinks.forEach((link) => {
-      if (Number(link.dataset.nav) === currentIndex) {
-        link.setAttribute('aria-current', 'true');
-      } else {
-        link.removeAttribute('aria-current');
-      }
-    });
-    if (cornerLabel) {
-      cornerLabel.textContent =
-        String(currentIndex + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
-    }
-    if (srLive) {
-      const label = panels[currentIndex].dataset.label || '';
-      srLive.textContent = 'Panel ' + (currentIndex + 1) + ' of ' + total + ': ' + label;
-    }
+function syncToggle() {
+  const light = root.dataset.theme === "light";
+  toggle.setAttribute("aria-label", light ? "Switch to dark mode" : "Switch to light mode");
+  document.querySelector('meta[name="theme-color"]').content = light ? "#ffffff" : "#000000";
+}
+toggle.addEventListener("click", () => {
+  root.dataset.theme = root.dataset.theme === "light" ? "dark" : "light";
+  try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+  syncToggle();
+});
+syncToggle();
+
+/* Clock: ticks on each real second boundary, the dot blinks with it */
+const clock = document.getElementById("clock");
+const dot = document.getElementById("clock-dot");
+const fmt = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Asia/Kolkata",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+});
+
+function tick() {
+  const now = new Date();
+  clock.textContent = fmt.format(now);
+  dot.classList.toggle("off", now.getSeconds() % 2 === 1);
+}
+tick();
+setTimeout(() => {
+  tick();
+  setInterval(tick, 1000);
+}, 1000 - (Date.now() % 1000));
+
+function timezoneNote() {
+  const visitorOffset = -new Date().getTimezoneOffset();
+  const diff = IST_OFFSET_MIN - visitorOffset;
+  if (diff === 0) return "We're in the same timezone";
+  const h = Math.floor(Math.abs(diff) / 60);
+  const m = Math.abs(diff) % 60;
+  const span = [h && `${h} h`, m && `${m} m`].filter(Boolean).join(" ");
+  return `${span} ${diff > 0 ? "ahead of" : "behind"} you`;
+}
+document.getElementById("tz-note").textContent = timezoneNote();
+
+/* Scroll progress */
+const bar = document.getElementById("progress");
+let ticking = false;
+function updateProgress() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  bar.style.transform = `scaleX(${max > 0 ? Math.min(window.scrollY / max, 1) : 0})`;
+  ticking = false;
+}
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    ticking = true;
+    requestAnimationFrame(updateProgress);
   }
+}, { passive: true });
+window.addEventListener("resize", updateProgress);
+updateProgress();
 
-  // Native vertical page scroll does the actual moving; this just drives it
-  // for keyboard input rather than intercepting wheel/touch, which stay
-  // untouched. Top-nav links are plain #anchors (scroll-padding-top in CSS
-  // keeps them clear of the fixed nav), so they need no handler here.
-  function goToPanel(index) {
-    index = Math.max(0, Math.min(total - 1, index));
-    panels[index].scrollIntoView({
-      behavior: reducedMotion ? 'auto' : 'smooth',
-      block: 'start',
-    });
-    setCurrentIndex(index);
+/* Stack: a sliding row of the logo chips; click it to see everything */
+const stack = document.getElementById("stack");
+if (!reduceMotion) {
+  const marquee = document.getElementById("marquee");
+  const groups = document.getElementById("stack-groups");
+  const stackToggle = document.getElementById("stack-toggle");
+  const track = document.createElement("div");
+  track.className = "track";
+  const list = document.createElement("ul");
+  groups.querySelectorAll(".chip:not(.chip-text)").forEach((chip) => list.append(chip.cloneNode(true)));
+  // Two copies so the loop is seamless at -50%.
+  track.append(list, list.cloneNode(true));
+  marquee.append(track);
+  stack.classList.add("js");
+  stackToggle.hidden = false;
+
+  function setOpen(open) {
+    stack.classList.toggle("open", open);
+    stackToggle.setAttribute("aria-expanded", String(open));
+    stackToggle.textContent = open ? "Show less" : "Show all";
   }
+  marquee.addEventListener("click", () => setOpen(true));
+  stackToggle.addEventListener("click", () => setOpen(!stack.classList.contains("open")));
+}
 
-  // Keyboard navigation — section-by-section, alongside the top nav.
-  window.addEventListener('keydown', (e) => {
-    switch (e.key) {
-      case 'ArrowDown':
-      case 'PageDown':
-        e.preventDefault();
-        goToPanel(currentIndex + 1);
-        break;
-      case 'ArrowUp':
-      case 'PageUp':
-        e.preventDefault();
-        goToPanel(currentIndex - 1);
-        break;
-      case 'Home':
-        e.preventDefault();
-        goToPanel(0);
-        break;
-      case 'End':
-        e.preventDefault();
-        goToPanel(total - 1);
-        break;
-      default:
-        break;
-    }
-  });
-
-  // Keep currentIndex accurate for ALL input methods (scroll, nav clicks,
-  // keyboard). Sections are compact now (not forced to fill the viewport),
-  // so an intersection-ratio threshold isn't reliable — instead pick the
-  // last section whose top has crossed a line near the top of the viewport.
-  function updateCurrentFromScroll() {
-    const doc = document.documentElement;
-    const maxScrollY = Math.max(doc.scrollHeight - window.innerHeight, 0);
-    const line = window.scrollY + window.innerHeight * 0.3;
-    let index = 0;
-    panels.forEach((panel, i) => {
-      // Clamp to maxScrollY: a short final section's top may sit past the
-      // furthest the page can actually scroll, so without this the last
-      // panel could never be "reached" even at the very bottom of the page.
-      const effectiveTop = Math.min(panel.offsetTop, maxScrollY);
-      if (effectiveTop <= line) index = i;
-    });
-    setCurrentIndex(index);
+/* Badges */
+if (BADGES.length) {
+  const list = document.getElementById("badge-list");
+  for (const b of BADGES) {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = b.url;
+    const img = document.createElement("img");
+    img.src = b.image;
+    img.alt = b.name;
+    img.width = img.height = 96;
+    a.append(img);
+    li.append(a);
+    list.append(li);
   }
-
-  let rafPending = false;
-  window.addEventListener('scroll', () => {
-    if (!rafPending) {
-      rafPending = true;
-      requestAnimationFrame(() => {
-        updateCurrentFromScroll();
-        rafPending = false;
-      });
-    }
-  });
-
-  updateCurrentFromScroll();
-
-  // Mobile nav: the link list collapses behind a Menu toggle under 760px.
-  // Close it again after a link is picked or on Escape, so it never stays
-  // open covering the section that was just navigated to.
-  const navToggle = document.getElementById('nav-toggle');
-  const navList = document.getElementById('nav-links');
-  if (navToggle && navList) {
-    function setMenuOpen(open) {
-      navList.classList.toggle('is-open', open);
-      navToggle.setAttribute('aria-expanded', String(open));
-      navToggle.textContent = open ? 'Close' : 'Menu';
-    }
-    navToggle.addEventListener('click', () => {
-      setMenuOpen(!navList.classList.contains('is-open'));
-    });
-    navList.addEventListener('click', (e) => {
-      if (e.target.closest('a')) setMenuOpen(false);
-    });
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && navList.classList.contains('is-open')) {
-        setMenuOpen(false);
-        navToggle.focus();
-      }
-    });
-  }
-
-  // Scroll reveal: .reveal elements fade/slide up once as they enter the
-  // viewport. Siblings entering together get a small stagger so a row of
-  // cards cascades instead of popping in as one block. Without
-  // IntersectionObserver (or with reduced motion) everything is shown
-  // immediately.
-  const revealEls = Array.from(document.querySelectorAll('.reveal'));
-  if (reducedMotion || !('IntersectionObserver' in window)) {
-    revealEls.forEach((el) => el.classList.add('is-in'));
-  } else {
-    const observer = new IntersectionObserver((entries) => {
-      const entering = entries.filter((entry) => entry.isIntersecting);
-      entering.forEach((entry, i) => {
-        entry.target.style.transitionDelay = Math.min(i * 70, 350) + 'ms';
-        entry.target.classList.add('is-in');
-        observer.unobserve(entry.target);
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    revealEls.forEach((el) => observer.observe(el));
-  }
-
-  // Floating dots background: slow-drifting white particles over the black
-  // page. Canvas is sized in device pixels (canvas.width/height) but drawn
-  // against CSS-pixel coordinates via ctx.setTransform(dpr...), so dots
-  // stay crisp at any devicePixelRatio.
-  const dotsCanvas = document.getElementById('dots-bg');
-  if (dotsCanvas) {
-    const ctx = dotsCanvas.getContext('2d');
-    let width = 0;
-    let height = 0;
-    let particles = [];
-    const DENSITY = 1 / 18000; // particles per CSS px^2
-
-    function makeParticle() {
-      return {
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: 0.6 + Math.random() * 1.4,
-        speed: 6 + Math.random() * 14, // CSS px per second, drifting upward
-        drift: (Math.random() - 0.5) * 6,
-        opacity: 0.15 + Math.random() * 0.35,
-      };
-    }
-
-    // Keeps existing particles across resizes and only adds/drops the
-    // difference: mobile browsers fire resize whenever the address bar
-    // shows or hides mid-scroll, and regenerating everything made the dots
-    // visibly reshuffle each time.
-    function resize() {
-      const dpr = window.devicePixelRatio || 1;
-      width = window.innerWidth;
-      height = window.innerHeight;
-      dotsCanvas.width = Math.round(width * dpr);
-      dotsCanvas.height = Math.round(height * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.round(width * height * DENSITY);
-      while (particles.length < count) particles.push(makeParticle());
-      particles.length = count;
-    }
-
-    function draw(deltaSeconds) {
-      ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = '#fff';
-      particles.forEach((p) => {
-        if (deltaSeconds) {
-          p.y -= p.speed * deltaSeconds;
-          p.x += p.drift * deltaSeconds;
-          if (p.y < -4) {
-            p.y = height + 4;
-            p.x = Math.random() * width;
-          }
-          if (p.x < -4) p.x = width + 4;
-          if (p.x > width + 4) p.x = -4;
-        }
-        ctx.globalAlpha = p.opacity;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      ctx.globalAlpha = 1;
-    }
-
-    resize();
-    draw(0);
-    window.addEventListener('resize', () => {
-      resize();
-      draw(0);
-    });
-
-    if (!reducedMotion) {
-      let lastTime = null;
-      function frame(now) {
-        // Cap the step: after the tab has been in the background, rAF
-        // resumes with a multi-second gap that would teleport every dot.
-        if (lastTime !== null) draw(Math.min((now - lastTime) / 1000, 0.1));
-        lastTime = now;
-        requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-    }
-  }
-})();
+  document.getElementById("credly-link").href = CREDLY_PROFILE;
+  document.getElementById("badges").hidden = false;
+}
