@@ -3,7 +3,7 @@
 const GITHUB_USER = "vxkram";
 
 const PROJECTS = [
-  { name: "Résumé Quest", desc: "A pixel-art résumé analyser that only scores skills it can quote from the résumé.", source: "https://github.com/vxkram/resume-summarizer" },
+  { name: "Résumé Quest", desc: "A pixel-art résumé analyser that only scores skills it can quote from the résumé.", source: "https://github.com/vxkram/resume-quest" },
   { name: "DEX", desc: "A small native Mac app for images, PDFs and audio, lossless where it can be.", source: "https://github.com/vxkram/DEX", site: "https://github.com/vxkram/DEX/releases", siteLabel: "download" },
   { name: "LLM Sentinel", desc: "A gateway in front of several LLM providers, with rate limits, budgets and automatic failover.", source: "https://github.com/vxkram/llm-sentinel" },
   { name: "Ad Template Generator", desc: "One product photo and a one-line brief become ads in six sizes, all on your machine.", source: "https://github.com/vxkram/ad_template" },
